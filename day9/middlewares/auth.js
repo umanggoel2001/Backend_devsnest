@@ -41,4 +41,15 @@ const User = require('../models/userModel');
         })
     }
  }
- module.exports={isAuthenticated , isSeller};
+
+ const isBuyer =async(req,res, next)=>{
+    if(!req.user.dataValues.isSeller){
+        next();
+    }
+    else{
+        return res.status(401).json({
+            err:"You are not Seller"
+        })
+    }
+ }
+ module.exports={isAuthenticated , isSeller ,isBuyer };

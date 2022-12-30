@@ -17,3 +17,12 @@ const connectToDB = () => {
 };
 
 module.exports = { createDB, connectToDB };
+
+const userModel = require("../models/userModel");
+const orderModel = require("../models/orderModels");
+//forweign keys
+orderModel.belongsTo(userModel , {foreignKey:"buyerId"});
+//many to many
+userModel.hasMany(orderModel , {foreignKey:"id"});
+
+
